@@ -1,6 +1,10 @@
 # Cottonfall
 
-![Proudly 95.9% AI](https://img.shields.io/badge/Proudly-97.7%25_AI-8A2BE2?style=for-the-badge)
+<img
+  src="assets/certified-95.9-ai.png"
+  alt="Certified 95.9% AI - The remaining 4.1% is debugging"
+  width="200"
+>
 
 **An investigative horror setting, adventure, and atmospheric effects module for GURPS and Foundry Virtual Tabletop**
 
