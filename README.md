@@ -1,6 +1,12 @@
 # Cottonfall
 
-![Certified 95.9% AI](assets/certified-95.9-ai.png)
+<p align="center">
+  <img
+    src="assets/certified-95.9-ai.png"
+    alt="Certified 95.9% AI"
+    width="200"
+  />
+</p>
 
 **An investigative horror setting, adventure, and atmospheric effects module for GURPS and Foundry Virtual Tabletop**
 
