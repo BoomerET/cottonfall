@@ -142,6 +142,8 @@ class CottonfallFXPanel extends foundry.applications.api.HandlebarsApplicationMi
       glitchHard: CottonfallFXPanel.#glitchHard,
       realityLurch: CottonfallFXPanel.#realityLurch,
       fullBreak: CottonfallFXPanel.#fullBreak,
+      populationShift: CottonfallFXPanel.#populationShift,
+      populationRestore: CottonfallFXPanel.#populationRestore,
       threeSeventeen: CottonfallFXPanel.#threeSeventeen,
       fogOn: CottonfallFXPanel.#fogOn,
       fogOff: CottonfallFXPanel.#fogOff,
@@ -184,6 +186,15 @@ class CottonfallFXPanel extends foundry.applications.api.HandlebarsApplicationMi
   static #glitchHard() { globalThis.CottonfallFX.glitchPreset("hard"); }
   static async #realityLurch() { await globalThis.CottonfallFX.realityLurch(); }
   static async #fullBreak() { await globalThis.CottonfallFX.fullBreak(); }
+
+  static async #populationShift() {
+    await globalThis.CottonfallFX.populationShift();
+  }
+
+  static async #populationRestore() {
+    await globalThis.CottonfallFX.populationRestore();
+  }
+
   static async #threeSeventeen() { await globalThis.CottonfallFX.threeSeventeen(); }
   static #fogOn() { return globalThis.CottonfallFX?.fogOn(); }
   static #fogOff() { return globalThis.CottonfallFX?.fogOff(); }
@@ -661,6 +672,88 @@ Hooks.once("ready", () => {
       else this.glitchOff();
       this._refresh();
     },
+
+    /* ---------------- Population Shift ---------------- */
+
+/**
+ * Change the Cottonfall welcome sign population.
+ *
+ * Uses Foundry V14's Level.background API.
+ * The scene update is synchronized automatically.
+ */
+async populationShift() {
+  await this.setPopulation(18741);
+},
+
+async populationRestore() {
+  await this.setPopulation(18742);
+},
+
+async setPopulation(population) {
+  if (!game.user?.isGM) {
+    ui.notifications.warn("Only the GM can change Cottonfall's population.");
+    return;
+  }
+
+  const scene = canvas.scene;
+
+  if (!scene || scene.name !== "Cottonfall - Morning") {
+    ui.notifications.warn("Activate the Cottonfall - Morning scene first.");
+    return;
+  }
+
+  const level = scene.levels?.contents?.find(level => {
+    const src = level.background?.src ?? "";
+    return (
+      src.includes("Cottonfall-A-Nice-Place-to-Live.png") ||
+      src.includes("Cottonfall-population-18741.png") ||
+      src.includes("Cottonfall-population-18742.png")
+    );
+  });
+
+  if (!level) {
+    ui.notifications.warn("Cottonfall welcome sign background not found.");
+    return;
+  }
+
+  const image = `modules/cottonfall/assets/images/Cottonfall-population-${population}.png`;
+
+  if (level.background.src === image) {
+    ui.notifications.info(`Cottonfall population is already ${population.toLocaleString()}.`);
+    return;
+  }
+
+  // Preload the replacement image to avoid a visible loading delay.
+  try {
+    await foundry.canvas.TextureLoader.loader.loadTexture(image);
+  } catch (err) {
+    console.error("Cottonfall FX | Population image preload failed", err);
+    ui.notifications.error("Unable to load the Cottonfall population image.");
+    return;
+  }
+
+  try {
+    // Start the visual disturbance.
+    const glitch = this.fullBreak(1800);
+
+    // Change the sign while the distortion is active.
+    await sleep(650);
+
+    await level.update({
+      "background.src": image
+    });
+
+    // Wait for the glitch to finish.
+    await glitch;
+
+    ui.notifications.info(
+      `Cottonfall population changed to ${population.toLocaleString()}.`
+    );
+  } catch (err) {
+    console.error("Cottonfall FX | Population shift failed", err);
+    ui.notifications.error("Cottonfall population shift failed.");
+  }
+},
 
     /* ---------------- The 3:17 Event ---------------- */
 
