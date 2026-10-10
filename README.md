@@ -233,9 +233,44 @@ The following modules may improve the GURPS/Foundry experience but are not requi
 - GURPS HUD
 - Dice So Nice!
 - Journal Quick Links
-- Simple Calendar Reborn
+- Simple Calendar Reborn/Calendaria
 
 Use whichever tools suit your table.
+
+## Optional: GURPS Rulebook PDF Integration
+
+Cottonfall uses the **GURPS 4e Game Aid (Unofficial)** system for Foundry VTT. You can configure your legally obtained GURPS rulebook PDFs to enable clickable page references from character sheets and other game content.
+
+### Configuring Your GURPS Basic Set
+
+1. Launch your Foundry VTT world.
+2. Import your GURPS Basic Set PDF into a Journal Entry with a PDF page.
+3. Navigate to **Settings → Game Settings → GURPS 4e Game Aid → PDFs → PDF Settings**.
+4. Configure the PDF reference settings for your edition of the Basic Set.
+5. Use `B` as the book reference code. (or `BX`)
+6. Set the appropriate page offset for your PDF edition.
+7. Save your settings.
+
+### Testing PDF References
+
+Test the following Basic Set page references:
+
+- `B101`
+- `B203`
+- `B336`
+- `B338`
+- `B400`
+
+Each reference should open the corresponding printed page in your PDF.
+
+**Note:** Different editions and PDF releases may have different page offsets. In particular, the combined *GURPS Basic Set Fourth Edition Revised* may require different configuration from the original separate *Characters* and *Campaigns* volumes.
+
+### Important
+
+- Cottonfall does **not** distribute copyrighted GURPS rulebooks.
+- Each GM must provide and configure their own legally obtained PDFs.
+- PDF integration is optional and does not affect the adventure's core functionality.
+- PDF configuration may need to be repeated when creating a new Foundry world.
 
 ## Content and Tone
 
