@@ -185,7 +185,13 @@ The actual scripts and README determine exact runtime behavior. Test player sync
 > “Oh God. It's here.”  
 > *[END]*
 
-**Continuity check required:** Episode 01 also involves a male caller, a 3:17 voicemail, and an unheard siren. Before finalizing v0.3.0, inspect the actual audio and compendium to determine whether this is the same recording, a second event, or a revised concept. **Do not invent the answer.**
+**Established canon — The 3:17 Voicemail:** Episode 01 (*The Missing Resident*) and Episode 02 (*The Resident Who Never Existed*) reference the **same original audio recording**, not two separate incidents.
+
+The caller is unmistakably male, but his identity remains unknown. The recording must not be definitively attributed to Dr. Samuel Bell.
+
+A tornado siren is clearly audible in the recording, despite Cottonfall's warning system showing **no activation at 3:17 a.m.** and no residents reporting hearing a siren.
+
+**These contradictions are intentional and must be preserved.**
 
 ### Work still to do
 
